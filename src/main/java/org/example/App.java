@@ -30,8 +30,27 @@ public class App {
             }else if(command.equals("목록")){
                 printWiseSayingList();
 
+            }else if(command.startsWith("삭제?id=")){
+
+                String strId = command.substring(6);
+               int id = Integer.parseInt(strId);
+
+               deleteWiseSaying(id);
+                System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));
             }
         }
+    }
+
+    private void deleteWiseSaying(int targetId) {
+
+        for(WiseSaying wiseSaying : wiseSayingList){
+            if (wiseSaying.getId() == targetId){
+                wiseSayingList.remove(wiseSaying);
+                break;
+            }
+        }
+
+//        wiseSayingList.remove(1); //1번째 명언 삭제 -> 명언의 번호와 배열의 index가 아무 상관이 없다.
     }
 
     private void printWiseSayingList() {
